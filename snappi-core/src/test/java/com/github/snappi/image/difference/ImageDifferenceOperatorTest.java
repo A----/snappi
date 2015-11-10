@@ -64,6 +64,6 @@ public class ImageDifferenceOperatorTest {
     BufferedImage redPixel = this.getImageFromResource("red-pixel.png");
 
     ImageDifferenceOperator operator = new ImageDifferenceOperator();
-    long result = operator.compute(lenna, redPixel);
+    operator.compute(lenna, redPixel);
   }
 }
