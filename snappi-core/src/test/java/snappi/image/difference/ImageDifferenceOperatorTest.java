@@ -1,15 +1,18 @@
 package snappi.image.difference;
 
 import static org.junit.Assert.assertEquals;
+
 import java.awt.image.BufferedImage;
-import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
+
 import javax.imageio.ImageIO;
+
 import org.junit.Test;
 
-import snappi.image.difference.ImageDifferenceOperator;
-
 public class ImageDifferenceOperatorTest {
+
+public class AssertionsTest {
 
   public BufferedImage getImageFromResource(String fileName) {
     ClassLoader classLoader = this.getClass().getClassLoader();
@@ -17,16 +20,17 @@ public class ImageDifferenceOperatorTest {
     if (resource == null) {
       throw new IllegalArgumentException("Image could not be found.");
     }
-
+    
     try {
-      File file = new File(classLoader.getResource(fileName).getFile());
-      return ImageIO.read(file);
+      InputStream stream = classLoader.getResourceAsStream(fileName);
+      BufferedImage image = ImageIO.read(stream); 
+      return image;
     }
     catch(Exception e) {
       throw new IllegalArgumentException("An error occured while reading the image.");
     }
   }
-
+  
   @Test
   public void noDifferenceWithItself() {
     BufferedImage lennaA = this.getImageFromResource("lenna.png");
