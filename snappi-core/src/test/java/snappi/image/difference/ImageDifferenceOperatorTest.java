@@ -1,4 +1,4 @@
-package com.github.snappi.image.difference;
+package snappi.image.difference;
 
 import static org.junit.Assert.assertEquals;
 import java.awt.image.BufferedImage;
@@ -6,6 +6,8 @@ import java.io.File;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import org.junit.Test;
+
+import snappi.image.difference.ImageDifferenceOperator;
 
 public class ImageDifferenceOperatorTest {
 

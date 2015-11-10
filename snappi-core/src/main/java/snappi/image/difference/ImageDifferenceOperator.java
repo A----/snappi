@@ -1,4 +1,4 @@
-package com.github.snappi.image.difference;
+package snappi.image.difference;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
