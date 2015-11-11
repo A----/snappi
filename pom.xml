@@ -18,5 +18,6 @@
   <modules>
     <module>snappi-core</module>
     <module>snappi-junit</module>
+    <module>snappi-file</module>
   </modules>
 </project>

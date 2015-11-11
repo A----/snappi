@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>snappi-file</artifactId>
+  <packaging>jar</packaging>
+
+  <parent>
+    <groupId>snappi</groupId>
+    <artifactId>snappi</artifactId>
+    <version>${project.version}</version>
+  </parent>
+
+  <name>snappi-file</name>
+  <url>https://github.com/A----/snappi</url>
+
+  <dependencies>
+    <dependency>
+      <groupId>snappi</groupId>
+      <artifactId>snappi-core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>snappi</groupId>
+      <artifactId>snappi-junit</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>snappi</groupId>
+      <artifactId>snappi-core</artifactId>
+      <version>${project.version}</version>
+      <type>test-jar</type>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+    </dependency>
+  </dependencies>
+</project>

@@ -6,8 +6,11 @@ import snappi.image.difference.ImageDifferenceOperator;
 import snappi.image.difference.Result;
 
 public class Assertions {
+  static final String ASSERT_SAME_MESSAGE = "Actual image is different from the expected one.";
+  static final String ASSERT_SIMILAR_MESSAGE = "Actual image differs too much from the expected one.";
+  
   public static void assertSame(BufferedImage expected, BufferedImage actual) {
-    assertSame("Actual image is different from the expected one.", expected, actual);
+    assertSame(ASSERT_SAME_MESSAGE, expected, actual);
   }
   
   public static void assertSame(String message, BufferedImage expected, BufferedImage actual) {
@@ -15,7 +18,7 @@ public class Assertions {
   }
 
   public static void assertSimilar(BufferedImage expected, BufferedImage actual, int toleranceInPixels) {
-    assertSimilar("Actual image differs to much from the expected one", expected, actual, toleranceInPixels);
+    assertSimilar(ASSERT_SIMILAR_MESSAGE, expected, actual, toleranceInPixels);
   }
   
   public static void assertSimilar(String message, BufferedImage expected, BufferedImage actual, int toleranceInPixels) {
@@ -23,7 +26,7 @@ public class Assertions {
   }
 
   public static void assertSimilar(BufferedImage expected, BufferedImage actual, long toleranceInPixels) {
-    assertSimilar("Actual image differs to much from the expected one", expected, actual, toleranceInPixels);
+    assertSimilar(ASSERT_SIMILAR_MESSAGE, expected, actual, toleranceInPixels);
   }
   
   public static void assertSimilar(String message, BufferedImage expected, BufferedImage actual, long toleranceInPixels) {
@@ -36,7 +39,7 @@ public class Assertions {
   }
   
   public static void assertSimilar(BufferedImage expected, BufferedImage actual, double toleranceInPercentage) {
-    assertSimilar("Actual image differs to much from the expected one", expected, actual, toleranceInPercentage);
+    assertSimilar(ASSERT_SIMILAR_MESSAGE, expected, actual, toleranceInPercentage);
   }
   
   public static void assertSimilar(String message, BufferedImage expected, BufferedImage actual, double toleranceInPercentage) {
