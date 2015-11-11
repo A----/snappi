@@ -53,7 +53,7 @@ public class ImageDifferenceOperator {
     
     Result result = new Result(imageA, imageB);
     result.setCount(count);
-    result.setPercentage(count / (width * height));
+    result.setPercentage(((double) count) / (width * height));
 
     return result;
   }

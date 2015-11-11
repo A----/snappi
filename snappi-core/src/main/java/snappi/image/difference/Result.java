@@ -7,7 +7,7 @@ public class Result {
   private final BufferedImage imageB;
   
   private long count;
-  private long percentage;
+  private double percentage;
   
   Result(BufferedImage imageA, BufferedImage imageB) {
     this.imageA = imageA;
@@ -22,11 +22,11 @@ public class Result {
     this.count = count;
   }
 
-  public long getPercentage() {
+  public double getPercentage() {
     return percentage;
   }
 
-  void setPercentage(long percentage) {
+  void setPercentage(double percentage) {
     this.percentage = percentage;
   }
 
