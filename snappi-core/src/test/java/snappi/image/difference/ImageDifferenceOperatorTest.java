@@ -12,8 +12,6 @@ import org.junit.Test;
 
 public class ImageDifferenceOperatorTest {
 
-public class AssertionsTest {
-
   public BufferedImage getImageFromResource(String fileName) {
     ClassLoader classLoader = this.getClass().getClassLoader();
     URL resource = classLoader.getResource(fileName);
@@ -37,9 +35,9 @@ public class AssertionsTest {
     BufferedImage lennaB = this.getImageFromResource("lenna.png");
 
     ImageDifferenceOperator operator = new ImageDifferenceOperator();
-    long result = operator.compute(lennaA, lennaB);
+    Result result = operator.compute(lennaA, lennaB);
 
-    assertEquals("There should not be any differences between an image and itself.", 0L, result);
+    assertEquals("There should not be any differences between an image and itself.", 0L, result.getCount());
   }
 
   @Test
@@ -48,9 +46,9 @@ public class AssertionsTest {
     BufferedImage lennaB = this.getImageFromResource("lenna-modified.png");
 
     ImageDifferenceOperator operator = new ImageDifferenceOperator();
-    long result = operator.compute(lennaA, lennaB);
+    Result result = operator.compute(lennaA, lennaB);
 
-    assertEquals("There are differences between those images.", 498L, result);
+    assertEquals("There are differences between those images.", 498L, result.getCount());
   }
 
   @Test
@@ -59,9 +57,9 @@ public class AssertionsTest {
     BufferedImage lennaB = this.getImageFromResource("lenna-modified-alpha.png");
 
     ImageDifferenceOperator operator = new ImageDifferenceOperator();
-    long result = operator.compute(lennaA, lennaB);
+    Result result = operator.compute(lennaA, lennaB);
 
-    assertEquals("There should not be any differences when modifications are not fully opaque.", 0L, result);
+    assertEquals("There should not be any differences when modifications are not fully opaque.", 0L, result.getCount());
   }
 
   @Test(expected = IllegalArgumentException.class)

@@ -30,7 +30,7 @@ public class ImageDifferenceOperator {
    * @param imageA Left operand.
    * @param imageB right operand.
    */
-  public long compute(BufferedImage imageA, BufferedImage imageB) {
+  public Result compute(BufferedImage imageA, BufferedImage imageB) {
     long count = 0;
 
     final int width = imageA.getWidth();
@@ -50,7 +50,11 @@ public class ImageDifferenceOperator {
         ++count;
       }
     }
+    
+    Result result = new Result(imageA, imageB);
+    result.setCount(count);
+    result.setPercentage(count / (width * height));
 
-    return count;
+    return result;
   }
 }

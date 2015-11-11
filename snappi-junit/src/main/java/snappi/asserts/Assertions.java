@@ -3,6 +3,7 @@ package snappi.asserts;
 import java.awt.image.BufferedImage;
 
 import snappi.image.difference.ImageDifferenceOperator;
+import snappi.image.difference.Result;
 
 public class Assertions {
   public static void assertSame(BufferedImage expected, BufferedImage actual) {
@@ -11,9 +12,9 @@ public class Assertions {
   
   public static void assertSame(String message, BufferedImage expected, BufferedImage actual) {
     ImageDifferenceOperator operator = new ImageDifferenceOperator();
-    long result = operator.compute(expected, actual);
+    Result result = operator.compute(expected, actual);
     
-    if(result > 0) {
+    if(result.getCount() > 0) {
       throw new AssertionError(message);
     }
   }
