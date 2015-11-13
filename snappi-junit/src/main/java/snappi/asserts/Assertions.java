@@ -45,7 +45,7 @@ public class Assertions {
     ImageDifferenceOperator operator = new ImageDifferenceOperator();
     Result result = operator.compute(expected, actual);
     
-    if(result.getPercentage() > (toleranceInPercentage / 100.0)) {
+    if(result.getRatio() > (toleranceInPercentage / 100.0)) {
       throw new AssertionError(message + " [" + result + "]");
     }
   }

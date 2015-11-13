@@ -5,7 +5,7 @@ public class Result {
   private final IOperand imageB;
   
   private long count;
-  private double percentage;
+  private double ratio;
   
   Result(final IOperand imageA, final IOperand imageB) {
     this.imageA = imageA;
@@ -20,12 +20,12 @@ public class Result {
     this.count = count;
   }
 
-  public double getPercentage() {
-    return percentage;
+  public double getRatio() {
+    return ratio;
   }
 
-  void setPercentage(double percentage) {
-    this.percentage = percentage;
+  void setRatio(double ratio) {
+    this.ratio = ratio;
   }
 
   public IOperand getImageA() {
@@ -38,7 +38,7 @@ public class Result {
   
   @Override
   public String toString() {
-    return this.count + " pixels differs (" + this.percentage + ")";
+    return this.count + " pixels differs (" + (this.ratio * 100.0) + "%)";
   }
   
 }
