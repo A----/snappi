@@ -36,7 +36,7 @@ public class ImageDifferenceOperator {
     final int BLACK_RGB = Color.BLACK.getRGB();
 
     for (int i = 0; i < pixelsA.length; i++) {
-      if (pixelsA[i] != pixelsB[i] && (pixelsA[i] & ignoreMaskA) == ignoreMaskA & (pixelsB[i] & ignoreMaskB) == ignoreMaskB) {
+      if (pixelsA[i] != pixelsB[i] && (pixelsA[i] | ignoreMaskA) != ignoreMaskA & (pixelsB[i] | ignoreMaskB) != ignoreMaskB) {
         ++count;
       }
     }
