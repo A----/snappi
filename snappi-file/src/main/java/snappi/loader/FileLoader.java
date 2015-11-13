@@ -6,16 +6,19 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import snappi.image.Image;
+
 public class FileLoader 
 {
-    public static BufferedImage load(String path) {
+    public static Image load(String path) {
       File file = new File(path);
       return FileLoader.load(file);
     }
     
-    public static BufferedImage load(File file) {
+    public static Image load(File file) {
       try {
-        return ImageIO.read(file);
+        BufferedImage bufferedImage = ImageIO.read(file); 
+        return new Image(bufferedImage);
       }
       catch (IOException e) {
         throw new IllegalArgumentException("An error occured while reading the file", e);

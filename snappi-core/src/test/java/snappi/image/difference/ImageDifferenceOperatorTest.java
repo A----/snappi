@@ -10,9 +10,11 @@ import javax.imageio.ImageIO;
 
 import org.junit.Test;
 
+import snappi.image.Image;
+
 public class ImageDifferenceOperatorTest {
 
-  public BufferedImage getImageFromResource(String fileName) {
+  public Image getImageFromResource(String fileName) {
     ClassLoader classLoader = this.getClass().getClassLoader();
     URL resource = classLoader.getResource(fileName);
     if (resource == null) {
@@ -22,7 +24,7 @@ public class ImageDifferenceOperatorTest {
     try {
       InputStream stream = classLoader.getResourceAsStream(fileName);
       BufferedImage image = ImageIO.read(stream); 
-      return image;
+      return new Image(image);
     }
     catch(Exception e) {
       throw new IllegalArgumentException("An error occured while reading the image.");
@@ -31,8 +33,8 @@ public class ImageDifferenceOperatorTest {
   
   @Test
   public void noDifferenceWithItself() {
-    BufferedImage lennaA = this.getImageFromResource("lenna.png");
-    BufferedImage lennaB = this.getImageFromResource("lenna.png");
+    Image lennaA = this.getImageFromResource("lenna.png");
+    Image lennaB = this.getImageFromResource("lenna.png");
 
     ImageDifferenceOperator operator = new ImageDifferenceOperator();
     Result result = operator.compute(lennaA, lennaB);
@@ -42,8 +44,8 @@ public class ImageDifferenceOperatorTest {
 
   @Test
   public void someDifferencesExpected() {
-    BufferedImage lennaA = this.getImageFromResource("lenna.png");
-    BufferedImage lennaB = this.getImageFromResource("lenna-modified.png");
+    Image lennaA = this.getImageFromResource("lenna.png");
+    Image lennaB = this.getImageFromResource("lenna-modified.png");
 
     ImageDifferenceOperator operator = new ImageDifferenceOperator();
     Result result = operator.compute(lennaA, lennaB);
@@ -53,8 +55,8 @@ public class ImageDifferenceOperatorTest {
 
   @Test
   public void noDifferenceWithModifiedAlpha() {
-    BufferedImage lennaA = this.getImageFromResource("lenna-alpha.png");
-    BufferedImage lennaB = this.getImageFromResource("lenna-modified-alpha.png");
+    Image lennaA = this.getImageFromResource("lenna-alpha.png");
+    Image lennaB = this.getImageFromResource("lenna-modified-alpha.png");
 
     ImageDifferenceOperator operator = new ImageDifferenceOperator();
     Result result = operator.compute(lennaA, lennaB);
@@ -64,8 +66,8 @@ public class ImageDifferenceOperatorTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void imagesOfDifferentSizes() {
-    BufferedImage lenna = this.getImageFromResource("lenna.png");
-    BufferedImage redPixel = this.getImageFromResource("red-pixel.png");
+    Image lenna = this.getImageFromResource("lenna.png");
+    Image redPixel = this.getImageFromResource("red-pixel.png");
 
     ImageDifferenceOperator operator = new ImageDifferenceOperator();
     operator.compute(lenna, redPixel);

@@ -8,9 +8,11 @@ import javax.imageio.ImageIO;
 
 import org.junit.Test;
 
+import snappi.image.Image;
+
 public class AssertionsTest {
 
-  public BufferedImage getImageFromResource(String fileName) {
+  public Image getImageFromResource(String fileName) {
     ClassLoader classLoader = this.getClass().getClassLoader();
     URL resource = classLoader.getResource(fileName);
     if (resource == null) {
@@ -20,7 +22,7 @@ public class AssertionsTest {
     try {
       InputStream stream = classLoader.getResourceAsStream(fileName);
       BufferedImage image = ImageIO.read(stream); 
-      return image;
+      return new Image(image);
     }
     catch(Exception e) {
       throw new IllegalArgumentException("An error occured while reading the image.");
@@ -30,8 +32,8 @@ public class AssertionsTest {
   
   @Test
   public void assertSameNoThrowWithSameImage() {
-    BufferedImage lennaA = this.getImageFromResource("lenna.png");
-    BufferedImage lennaB = this.getImageFromResource("lenna.png");
+    Image lennaA = this.getImageFromResource("lenna.png");
+    Image lennaB = this.getImageFromResource("lenna.png");
     
     Assertions.assertSame(lennaA, lennaB);
     Assertions.assertSame("reason", lennaA, lennaB);
@@ -40,8 +42,8 @@ public class AssertionsTest {
   
   @Test(expected = AssertionError.class)
   public void assertSameThrowWithDifferentImages() {
-    BufferedImage lennaA = this.getImageFromResource("lenna.png");
-    BufferedImage lennaB = this.getImageFromResource("lenna-modified.png");
+    Image lennaA = this.getImageFromResource("lenna.png");
+    Image lennaB = this.getImageFromResource("lenna-modified.png");
     
     Assertions.assertSame(lennaA, lennaB);
   }
@@ -49,8 +51,8 @@ public class AssertionsTest {
   
   @Test
   public void assertSimilarNoThrowHighEnoughTolerance() {
-    BufferedImage lennaA = this.getImageFromResource("lenna.png");
-    BufferedImage lennaB = this.getImageFromResource("lenna-modified.png");
+    Image lennaA = this.getImageFromResource("lenna.png");
+    Image lennaB = this.getImageFromResource("lenna-modified.png");
     
     Assertions.assertSimilar(lennaA, lennaB, 498);
     Assertions.assertSimilar(lennaA, lennaB, 498L);
@@ -60,8 +62,8 @@ public class AssertionsTest {
   
   @Test(expected = AssertionError.class)
   public void assertSimilarThrowLowToleranceInt() {
-    BufferedImage lennaA = this.getImageFromResource("lenna.png");
-    BufferedImage lennaB = this.getImageFromResource("lenna-modified.png");
+    Image lennaA = this.getImageFromResource("lenna.png");
+    Image lennaB = this.getImageFromResource("lenna-modified.png");
 
     Assertions.assertSimilar(lennaA, lennaB, 497);
   }
@@ -69,8 +71,8 @@ public class AssertionsTest {
   
   @Test(expected = AssertionError.class)
   public void assertSimilarThrowLowToleranceLong() {
-    BufferedImage lennaA = this.getImageFromResource("lenna.png");
-    BufferedImage lennaB = this.getImageFromResource("lenna-modified.png");
+    Image lennaA = this.getImageFromResource("lenna.png");
+    Image lennaB = this.getImageFromResource("lenna-modified.png");
 
     Assertions.assertSimilar(lennaA, lennaB, 497L);
   }
@@ -78,8 +80,8 @@ public class AssertionsTest {
   
   @Test(expected = AssertionError.class)
   public void assertSimilarThrowLowToleranceDouble() {
-    BufferedImage lennaA = this.getImageFromResource("lenna.png");
-    BufferedImage lennaB = this.getImageFromResource("lenna-modified.png");
+    Image lennaA = this.getImageFromResource("lenna.png");
+    Image lennaB = this.getImageFromResource("lenna-modified.png");
 
     Assertions.assertSimilar(lennaA, lennaB, 0.18);
   }

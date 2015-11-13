@@ -30,18 +30,21 @@ public class ImageDifferenceOperator {
    * @param imageA Left operand.
    * @param imageB right operand.
    */
-  public Result compute(BufferedImage imageA, BufferedImage imageB) {
+  public Result compute(IOperand imageA, IOperand imageB) {
     long count = 0;
 
-    final int width = imageA.getWidth();
-    final int height = imageB.getHeight();
+    final BufferedImage bufferedImageA = imageA.getImage();
+    final BufferedImage bufferedImageB = imageB.getImage();
+    
+    final int width = bufferedImageA.getWidth();
+    final int height = bufferedImageB.getHeight();
 
-    if (width != imageB.getWidth() || height != imageB.getHeight()) {
+    if (width != bufferedImageB.getWidth() || height != bufferedImageB.getHeight()) {
       throw new IllegalArgumentException("Images does not have the same size.");
     }
 
-    final int[] pixelsA = imageA.getRGB(0, 0, width, height, null, 0, width);
-    final int[] pixelsB = imageB.getRGB(0, 0, width, height, null, 0, width);
+    final int[] pixelsA = bufferedImageA.getRGB(0, 0, width, height, null, 0, width);
+    final int[] pixelsB = bufferedImageB.getRGB(0, 0, width, height, null, 0, width);
 
     final int BLACK_RGB = Color.BLACK.getRGB();
 

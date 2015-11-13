@@ -1,15 +1,13 @@
 package snappi.image.difference;
 
-import java.awt.image.BufferedImage;
-
 public class Result {
-  private final BufferedImage imageA;
-  private final BufferedImage imageB;
+  private final IOperand imageA;
+  private final IOperand imageB;
   
   private long count;
   private double percentage;
   
-  Result(BufferedImage imageA, BufferedImage imageB) {
+  Result(final IOperand imageA, final IOperand imageB) {
     this.imageA = imageA;
     this.imageB = imageB;
   }
@@ -30,11 +28,11 @@ public class Result {
     this.percentage = percentage;
   }
 
-  public BufferedImage getImageA() {
+  public IOperand getImageA() {
     return imageA;
   }
 
-  public BufferedImage getImageB() {
+  public IOperand getImageB() {
     return imageB;
   }
   

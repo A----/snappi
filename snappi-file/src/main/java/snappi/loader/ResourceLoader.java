@@ -6,9 +6,11 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import snappi.image.Image;
+
 public class ResourceLoader 
 {
-    public static BufferedImage load(String path) {
+    public static Image load(String path) {
       ClassLoader classLoader = ResourceLoader.class.getClassLoader();
       URL resource = classLoader.getResource(path);
       if (resource == null) {
@@ -18,7 +20,7 @@ public class ResourceLoader
       try {
         InputStream stream = classLoader.getResourceAsStream(path);
         BufferedImage image = ImageIO.read(stream); 
-        return image;
+        return new Image(image);
       }
       catch(Exception e) {
         throw new IllegalArgumentException("An error occured while reading the image.");
