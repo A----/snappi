@@ -14,8 +14,8 @@ public class ImageDifferenceOperatorTest {
   
   @Test
   public void noDifferenceWithItself() {
-    Image lennaA = TestUtils.getImageFromResource(TestSet.LENNA);
-    Image lennaB = TestUtils.getImageFromResource(TestSet.LENNA);
+    Image lennaA = TestUtils.getImage(TestSet.LENNA);
+    Image lennaB = TestUtils.getImage(TestSet.LENNA);
 
     ImageDifferenceOperator operator = new ImageDifferenceOperator();
     Result result = operator.compute(lennaA, lennaB);
@@ -25,8 +25,8 @@ public class ImageDifferenceOperatorTest {
 
   @Test
   public void someDifferencesExpected() {
-    Image lennaA = TestUtils.getImageFromResource(TestSet.LENNA);
-    Image lennaB = TestUtils.getImageFromResource(TestSet.LENNA_MODIFIED);
+    Image lennaA = TestUtils.getImage(TestSet.LENNA);
+    Image lennaB = TestUtils.getImage(TestSet.LENNA_MODIFIED);
 
     ImageDifferenceOperator operator = new ImageDifferenceOperator();
     Result result = operator.compute(lennaA, lennaB);
@@ -36,8 +36,8 @@ public class ImageDifferenceOperatorTest {
 
   @Test
   public void noDifferenceWithModifiedAlpha() {
-    Image lennaA = TestUtils.getImageFromResource(TestSet.LENNA_ALPHA);
-    Image lennaB = TestUtils.getImageFromResource(TestSet.LENNA_MODIFIED_ALPHA);
+    Image lennaA = TestUtils.getImage(TestSet.LENNA_ALPHA);
+    Image lennaB = TestUtils.getImage(TestSet.LENNA_MODIFIED_ALPHA);
 
     ImageDifferenceOperator operator = new ImageDifferenceOperator();
     Result result = operator.compute(lennaA, lennaB);
@@ -47,8 +47,8 @@ public class ImageDifferenceOperatorTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void imagesOfDifferentSizes() {
-    Image lenna = TestUtils.getImageFromResource(TestSet.LENNA);
-    Image redPixel = TestUtils.getImageFromResource(TestSet.RED_PIXEL);
+    Image lenna = TestUtils.getImage(TestSet.LENNA);
+    Image redPixel = TestUtils.getImage(TestSet.RED_PIXEL);
 
     ImageDifferenceOperator operator = new ImageDifferenceOperator();
     operator.compute(lenna, redPixel);

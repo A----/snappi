@@ -23,7 +23,7 @@ public class ImageDifferenceOperator {
     final int ignoreMaskB = imageB.getIgnoreMask();
     
     final int width = bufferedImageA.getWidth();
-    final int height = bufferedImageB.getHeight();
+    final int height = bufferedImageA.getHeight();
 
     if (width != bufferedImageB.getWidth() || height != bufferedImageB.getHeight()) {
       throw new IllegalArgumentException("Images does not have the same size.");
@@ -33,7 +33,7 @@ public class ImageDifferenceOperator {
     final int[] pixelsB = bufferedImageB.getRGB(0, 0, width, height, null, 0, width);
 
     for (int i = 0; i < pixelsA.length; i++) {
-      if (pixelsA[i] != pixelsB[i] && (pixelsA[i] | ignoreMaskA) != ignoreMaskA & (pixelsB[i] | ignoreMaskB) != ignoreMaskB) {
+      if (pixelsA[i] != pixelsB[i] && ((pixelsA[i] & ignoreMaskA) != pixelsA[i] || (pixelsB[i] & ignoreMaskB) != pixelsB[i])) {
         ++count;
       }
     }

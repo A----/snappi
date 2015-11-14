@@ -13,8 +13,8 @@ public class AssertionsTest {
  
   @Test
   public void assertSameNoThrowWithSameImage() {
-    Image lennaA = TestUtils.getImageFromResource(TestSet.LENNA);
-    Image lennaB = TestUtils.getImageFromResource(TestSet.LENNA);
+    Image lennaA = TestUtils.getImage(TestSet.LENNA);
+    Image lennaB = TestUtils.getImage(TestSet.LENNA);
     
     assertSame(lennaA, lennaB);
     assertSame("reason", lennaA, lennaB);
@@ -23,24 +23,24 @@ public class AssertionsTest {
   
   @Test(expected = AssertionError.class)
   public void assertSameThrowWithDifferentImages() {
-    Image lennaA = TestUtils.getImageFromResource(TestSet.LENNA);
-    Image lennaB = TestUtils.getImageFromResource(TestSet.LENNA_MODIFIED);
+    Image lennaA = TestUtils.getImage(TestSet.LENNA);
+    Image lennaB = TestUtils.getImage(TestSet.LENNA_MODIFIED);
     
     assertSame(lennaA, lennaB);
   }
   
   @Test
   public void assertSameThrowWithDifferentAlphaImages() {
-    Image lennaA = TestUtils.getImageFromResource(TestSet.LENNA_ALPHA);
-    Image lennaB = TestUtils.getImageFromResource(TestSet.LENNA_MODIFIED_ALPHA);
+    Image lennaA = TestUtils.getImage(TestSet.LENNA_ALPHA);
+    Image lennaB = TestUtils.getImage(TestSet.LENNA_MODIFIED_ALPHA);
     
     assertSame(lennaA, lennaB);
   }
   
   @Test
   public void assertSimilarNoThrowHighEnoughTolerance() {
-    Image lennaA = TestUtils.getImageFromResource(TestSet.LENNA);
-    Image lennaB = TestUtils.getImageFromResource(TestSet.LENNA_MODIFIED);
+    Image lennaA = TestUtils.getImage(TestSet.LENNA);
+    Image lennaB = TestUtils.getImage(TestSet.LENNA_MODIFIED);
     
     assertSimilar(lennaA, lennaB, 498);
     assertSimilar(lennaA, lennaB, 498L);
@@ -50,8 +50,8 @@ public class AssertionsTest {
   
   @Test(expected = AssertionError.class)
   public void assertSimilarThrowLowToleranceInt() {
-    Image lennaA = TestUtils.getImageFromResource(TestSet.LENNA);
-    Image lennaB = TestUtils.getImageFromResource(TestSet.LENNA_MODIFIED);
+    Image lennaA = TestUtils.getImage(TestSet.LENNA);
+    Image lennaB = TestUtils.getImage(TestSet.LENNA_MODIFIED);
 
     assertSimilar(lennaA, lennaB, 497);
   }
@@ -59,8 +59,8 @@ public class AssertionsTest {
   
   @Test(expected = AssertionError.class)
   public void assertSimilarThrowLowToleranceLong() {
-    Image lennaA = TestUtils.getImageFromResource(TestSet.LENNA);
-    Image lennaB = TestUtils.getImageFromResource(TestSet.LENNA_MODIFIED);
+    Image lennaA = TestUtils.getImage(TestSet.LENNA);
+    Image lennaB = TestUtils.getImage(TestSet.LENNA_MODIFIED);
 
     Assertions.assertSimilar(lennaA, lennaB, 497L);
   }
@@ -68,8 +68,8 @@ public class AssertionsTest {
   
   @Test(expected = AssertionError.class)
   public void assertSimilarThrowLowToleranceDouble() {
-    Image lennaA = TestUtils.getImageFromResource(TestSet.LENNA);
-    Image lennaB = TestUtils.getImageFromResource(TestSet.LENNA_MODIFIED);
+    Image lennaA = TestUtils.getImage(TestSet.LENNA);
+    Image lennaB = TestUtils.getImage(TestSet.LENNA_MODIFIED);
 
     Assertions.assertSimilar(lennaA, lennaB, 0.18);
   }
