@@ -1,6 +1,7 @@
 package snappi.loader;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
@@ -22,7 +23,7 @@ public class ResourceLoader
         BufferedImage image = ImageIO.read(stream); 
         return new Image(image);
       }
-      catch(Exception e) {
+      catch(IOException e) {
         throw new IllegalArgumentException("An error occured while reading the image.");
       }
     }
