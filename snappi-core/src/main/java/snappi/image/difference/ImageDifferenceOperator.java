@@ -1,6 +1,5 @@
 package snappi.image.difference;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 /**
@@ -32,8 +31,6 @@ public class ImageDifferenceOperator {
 
     final int[] pixelsA = bufferedImageA.getRGB(0, 0, width, height, null, 0, width);
     final int[] pixelsB = bufferedImageB.getRGB(0, 0, width, height, null, 0, width);
-
-    final int BLACK_RGB = Color.BLACK.getRGB();
 
     for (int i = 0; i < pixelsA.length; i++) {
       if (pixelsA[i] != pixelsB[i] && (pixelsA[i] | ignoreMaskA) != ignoreMaskA & (pixelsB[i] | ignoreMaskB) != ignoreMaskB) {
