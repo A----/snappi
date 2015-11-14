@@ -19,5 +19,6 @@
     <module>snappi-core</module>
     <module>snappi-junit</module>
     <module>snappi-file</module>
+    <module>snappi-selenium</module>
   </modules>
 </project>
