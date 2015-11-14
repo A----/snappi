@@ -35,13 +35,6 @@
             <goals>
               <goal>test-jar</goal>
             </goals>
-            
-            <configuration>
-              <classifier>test-resources</classifier>
-              <includes>
-                <include>*.png</include>
-              </includes>
-            </configuration>
           </execution>
         </executions>
       </plugin>
