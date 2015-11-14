@@ -1,5 +1,8 @@
 package snappi.asserts;
 
+import static snappi.asserts.Assertions.assertSame;
+import static snappi.asserts.Assertions.assertSimilar;
+
 import org.junit.Test;
 
 import snappi.image.Image;
@@ -13,8 +16,8 @@ public class AssertionsTest {
     Image lennaA = TestUtils.getImageFromResource(TestSet.LENNA);
     Image lennaB = TestUtils.getImageFromResource(TestSet.LENNA);
     
-    Assertions.assertSame(lennaA, lennaB);
-    Assertions.assertSame("reason", lennaA, lennaB);
+    assertSame(lennaA, lennaB);
+    assertSame("reason", lennaA, lennaB);
   }
 
   
@@ -23,7 +26,7 @@ public class AssertionsTest {
     Image lennaA = TestUtils.getImageFromResource(TestSet.LENNA);
     Image lennaB = TestUtils.getImageFromResource(TestSet.LENNA_MODIFIED);
     
-    Assertions.assertSame(lennaA, lennaB);
+    assertSame(lennaA, lennaB);
   }
   
   @Test
@@ -31,7 +34,7 @@ public class AssertionsTest {
     Image lennaA = TestUtils.getImageFromResource(TestSet.LENNA_ALPHA);
     Image lennaB = TestUtils.getImageFromResource(TestSet.LENNA_MODIFIED_ALPHA);
     
-    Assertions.assertSame(lennaA, lennaB);
+    assertSame(lennaA, lennaB);
   }
   
   @Test
@@ -39,9 +42,9 @@ public class AssertionsTest {
     Image lennaA = TestUtils.getImageFromResource(TestSet.LENNA);
     Image lennaB = TestUtils.getImageFromResource(TestSet.LENNA_MODIFIED);
     
-    Assertions.assertSimilar(lennaA, lennaB, 498);
-    Assertions.assertSimilar(lennaA, lennaB, 498L);
-    Assertions.assertSimilar(lennaA, lennaB, 0.19);
+    assertSimilar(lennaA, lennaB, 498);
+    assertSimilar(lennaA, lennaB, 498L);
+    assertSimilar(lennaA, lennaB, 0.19);
   }
 
   
@@ -50,7 +53,7 @@ public class AssertionsTest {
     Image lennaA = TestUtils.getImageFromResource(TestSet.LENNA);
     Image lennaB = TestUtils.getImageFromResource(TestSet.LENNA_MODIFIED);
 
-    Assertions.assertSimilar(lennaA, lennaB, 497);
+    assertSimilar(lennaA, lennaB, 497);
   }
 
   
