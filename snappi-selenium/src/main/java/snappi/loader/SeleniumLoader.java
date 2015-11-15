@@ -11,10 +11,7 @@ import org.openqa.selenium.TakesScreenshot;
 
 import snappi.image.Image;
 
-/**
- * Hello world!
- *
- */
+
 public class SeleniumLoader 
 {
     public static Image load(TakesScreenshot webDriver) {

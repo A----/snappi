@@ -65,7 +65,12 @@ public class TestUtils {
     return getImage(testSetElement.getFilename());
   }
   
-  public static void write(Image image, String filename) throws IOException {
-    ImageIO.write(image.getImage(), "png", new File(filename));
+  public static void write(Image image, String filename) {
+    try {
+      ImageIO.write(image.getImage(), "png", new File(filename));
+    }
+    catch (IOException e) {
+      throw new IllegalArgumentException("Cannot write into " + filename, e);
+    }
   }
 }
