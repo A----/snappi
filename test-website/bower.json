@@ -1,0 +1,18 @@
+{
+  "name": "test-website",
+  "version": "1.0.0",
+  "homepage": "http://a----.github.io/snappi/test-website",
+  "authors": [
+    "A---- <A----@users.noreply.github.com>"
+  ],
+  "description": "Test website for Snappi",
+  "main": "index.html",
+  "license": "Unlicense license",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
