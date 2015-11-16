@@ -4,14 +4,29 @@ import java.awt.image.BufferedImage;
 
 import snappi.image.difference.IOperand;
 
+/**
+ * Wraps an {@link BufferedImage}, giving it quick and useful methods.
+ */
 public class Image implements IOperand {
-
+  /**
+   * Masking half-opaque (127/255) pixels.
+   */
   public static final int IGNORE_ALPHA_MASK = 0x7FFFFFFF;
 
+  /**
+   * No mask at all.
+   */
   public static final int NO_MASK = 0xFFFFFFFF;
 
+  /**
+   * Default mask is the half-opaque one.
+   * @see #IGNORE_ALPHA_MASK
+   */
   private int ignoreMask = IGNORE_ALPHA_MASK;
   
+  /**
+   * Underlying image.
+   */
   private final BufferedImage image;
   
   /**
@@ -51,7 +66,17 @@ public class Image implements IOperand {
     return newImage;
   }
   
-  public Image ignoreRegion(int x, int y, int w, int h) {
+  /**
+   * Ignores the specified region.
+   * @param x Starting point of the rectangle on the X-axis.
+   * @param y Starting point of the rectangle on the Y-axis.
+   * @param w Width of the rectangle.
+   * @param h Height of the rectange.
+   * @return Itself.
+   * @throws IllegalArgumentException If any of the arguments is negative.
+   * @throws ArrayIndexOutOfBoundsException If the rectangle is not contained in the picture.
+   */
+  public Image ignoreRegion(int x, int y, int w, int h) throws IllegalArgumentException, ArrayIndexOutOfBoundsException {
     if (x < 0 || y < 0 || w < 0 || h < 0) {
       throw new IllegalArgumentException("Parameters can't be negatives");
     }
@@ -76,10 +101,19 @@ public class Image implements IOperand {
     return this;
   }
   
+  /**
+   * Ignore mask for the current picture.
+   * @return An integer, where bytes are respectively ARGB channels.
+   * @see BufferedImage#getRGB(int, int)
+   */
   public int getIgnoreMask() {
     return this.ignoreMask;
   }
 
+  /**
+   * Returns the underlying image.
+   * @return The AWT object.
+   */
   public BufferedImage getImage() {
     return this.image;
   }

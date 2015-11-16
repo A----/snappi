@@ -7,19 +7,26 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.TakesScreenshot;
 
-import snappi.image.Image;
+import snappi.image.WebImage;
 
 
 public class SeleniumLoader 
 {
-    public static Image load(TakesScreenshot webDriver) {
-      byte[] bytes = webDriver.getScreenshotAs(OutputType.BYTES);
+    public static WebImage load(TakesScreenshot driverOrElement) {
+      byte[] bytes = driverOrElement.getScreenshotAs(OutputType.BYTES);
       
       try {
         BufferedImage image = ImageIO.read(new ByteArrayInputStream(bytes));
-        return new Image(image);
+        
+        WebImage webImage = new WebImage(image);
+        if (driverOrElement instanceof SearchContext) {
+          webImage.setSearchContext((SearchContext) driverOrElement);
+        }
+        
+        return webImage;
       }
       catch(IOException e) {
         throw new IllegalArgumentException("An error occured while reading the image.");
