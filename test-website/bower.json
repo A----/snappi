@@ -14,5 +14,11 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "datatables": "~1.10.10",
+    "bootstrap": "~3.3.5",
+    "moment": "~2.10.6",
+    "highcharts": "~4.1.9"
+  }
 }

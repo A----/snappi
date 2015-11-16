@@ -52,7 +52,8 @@
             You may know that Bootstrap offers convenient classes for <a href="https://en.wikipedia.org/wiki/Responsive_web_design"><strong>Responsive Web Design</strong></a>. Try resizing your browser window. Now you can test that too!
           </p>
           <p>
-            See the table? Don't worry about Jack, he was on vacation. The ordering is done with <a href="https://www.datatables.net/">Datatables</a>. <strong>Testing that a table</strong> has all its entries and that they are in the correct order is quite a job to do. Well, not anymore.
+            See the table? Don't worry about Jack, he was on vacation.<br/>
+            The ordering is done with <a href="https://www.datatables.net/">Datatables</a>. <strong>Testing that a table</strong> has all its entries and that they are in the correct order is quite a job to do. Well, not anymore.
           </p>
         </div>
 
@@ -79,22 +80,67 @@
               </tr>
               <tr>
                 <td>David</td>
-                <td>131</td>
+                <td>75</td>
               </tr>
               <tr>
                 <td>Zoe</td>
-                <td>159</td>
+                <td>91</td>
               </tr>
           </table>
         </div>
       </div>
+
+      <div style="height: 32px;"></div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-5 col-sm-push-6 col-md-push-7">
+          <p>
+            What about this chart or any <strong>generated image</strong>? You could do some assertions on the <abbr title="Scalable Vector Graphic">SVG</abbr> paths, but <a href="http://www.highcharts.com">Highcharts</a> (the javascript library used) can also generate <abbr title="Vector Markup Language">VML</abbr> on old Internet Explorer browser. So double the job.
+          </p>
+
+          <p>
+            Testing the rendered image is <strong>easier</strong> and <strong>more meaningful and convenient</strong>.<br/>
+          </p>
+
+          <p>
+            It is also easy to <strong>put in place and maintain</strong>. A test is failing since Steve just changed an outdated component, so false positive? No need to rewrite new <a href="http://www.seleniumhq.org">Selenium</a> expectations! Check that everything looks good, and set that as reference from now on.
+          </p>
+
+          <p>
+            Anyway, kudos Julia, you're the real <abbr title="Most Valuable Player">MVP</abbr>.
+          </p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-7 col-sm-pull-6 col-md-pull-5">
+          <div id="sales-chart"></div>
+        </div>
+      </div>
+
+      <div style="height: 32px;"></div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <p>
+            It's but-time now. But! There are some things you just <strong>can't test</strong> using Snappi. That's the current date:
+          </p>
+
+          <p id="current-date" class="h3 text-center">Current Date</p>
+
+          <p>Snappi isn't the right tool for that. Also, sometimes, you can't mock everything. It's either too hard or too expensive.</p>
+
+          <p>That's why this is a <strong>complementary tool</strong>. It lets you focus on what really matters.</p>
+        </div>
+      </div>
     </div>
+
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="./bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="./bower_components/highcharts/highcharts.js"></script>
+    <script src="./bower_components/moment/min/moment.min.js"></script>
 
 
     <script>
@@ -105,6 +151,52 @@
           'paging': false,
           'info': false
         });
+
+        $('#sales-chart').highcharts({
+          chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            height: 300,
+            type: 'pie'
+          },
+          title: {
+            text: 'Sales per week'
+          },
+          plotOptions: {
+            series: {
+              animation: false
+            },
+            pie: {
+              dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.y}'
+              }
+            }
+          },
+          series: [{
+            name: "Sales",
+            colorByPoint: true,
+            data: [{
+                name: 'Mark',
+                y: 171
+              }, {
+                name: 'Julia',
+                y: 186
+              }, {
+                name: 'Jack',
+                y: 0
+              }, {
+                name: 'David',
+                y: 75
+              }, {
+                name: 'Zoe',
+                y: 91
+              }]
+          }]
+        });
+
+        $('#current-date').text(moment().format('LLL'));
       });
     </script>
   </body>
