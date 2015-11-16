@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
 
 import snappi.image.WebImage;
 
@@ -21,7 +22,14 @@ public class SeleniumLoader
       try {
         BufferedImage image = ImageIO.read(new ByteArrayInputStream(bytes));
         
-        WebImage webImage = new WebImage(image);
+        WebImage webImage;
+        if(driverOrElement instanceof WebElement) {
+          webImage = new WebImage(image, (WebElement) driverOrElement);
+        }
+        else {
+          webImage = new WebImage(image);
+        }
+        
         if (driverOrElement instanceof SearchContext) {
           webImage.setSearchContext((SearchContext) driverOrElement);
         }
