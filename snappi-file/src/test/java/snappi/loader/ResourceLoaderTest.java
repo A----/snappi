@@ -13,6 +13,6 @@ public class ResourceLoaderTest {
   
   @Test(expected = IllegalArgumentException.class)
   public void throwExceptionWithNonExistantFile() {
-    assertNotNull(ResourceLoader.load("non-existant.png"));
+    ResourceLoader.load("non-existant.png");
   }
 }

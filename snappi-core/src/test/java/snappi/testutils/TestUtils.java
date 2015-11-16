@@ -66,11 +66,15 @@ public class TestUtils {
   }
   
   public static void write(Image image, String filename) {
+    write(image, new File(filename));
+  }
+  
+  public static void write(Image image, File file) {
     try {
-      ImageIO.write(image.getImage(), "png", new File(filename));
+      ImageIO.write(image.getImage(), "png", file);
     }
     catch (IOException e) {
-      throw new IllegalArgumentException("Cannot write into " + filename, e);
+      throw new IllegalArgumentException("Cannot write into " + file.getName(), e);
     }
   }
 }
