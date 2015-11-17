@@ -12,13 +12,17 @@ public class ImageDifferenceOperator {
    * See there: http://stackoverflow.com/questions/25022578/highlight-differences-between-images/25151302#25151302
    * @param imageA Left operand.
    * @param imageB right operand.
+   * @return An object containing the number of different pixels and difference ratio.
+   * @throws IllegalArgumentException When images do not have the same size.
    */
   public Result compute(final IOperand imageA, final IOperand imageB) {
     long count = 0;
 
+    // Each image…
     final BufferedImage bufferedImageA = imageA.getImage();
     final BufferedImage bufferedImageB = imageB.getImage();
     
+    // …has a mask, pixels _not_ under it will be ignored
     final int ignoreMaskA = imageA.getIgnoreMask();
     final int ignoreMaskB = imageB.getIgnoreMask();
     
@@ -26,7 +30,7 @@ public class ImageDifferenceOperator {
     final int height = bufferedImageA.getHeight();
 
     if (width != bufferedImageB.getWidth() || height != bufferedImageB.getHeight()) {
-      throw new IllegalArgumentException("Images does not have the same size.");
+      throw new IllegalArgumentException("Images do not have the same size.");
     }
 
     final int[] pixelsA = bufferedImageA.getRGB(0, 0, width, height, null, 0, width);
